@@ -2,6 +2,8 @@
 
 ![Bottom Panel Toggle](src/main/resources/META-INF/pluginIcon.svg)
 
+[![Install from JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-Install-087CFA?style=for-the-badge)](https://plugins.jetbrains.com/plugin/35398-bottom-panel-toggle)
+
 One shortcut to hide and restore the bottom panel in IntelliJ IDEA.
 
 **macOS:** `Cmd+J` · **Windows / Linux:** `Ctrl+J`
