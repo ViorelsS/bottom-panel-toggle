@@ -1,0 +1,6 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="org.jetbrains.plugins.terminal">
+        <allowedActionsProvider
+                implementation="it.toys.bottompanel.BottomPanelTerminalActionsProvider"/>
+    </extensions>
+</idea-plugin>

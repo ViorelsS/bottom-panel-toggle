@@ -5,8 +5,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.openapi.components.service
-import com.intellij.openapi.wm.ToolWindow
-import com.intellij.openapi.wm.ex.ToolWindowManagerEx
 
 class ToggleBottomPanelAction : DumbAwareAction() {
 
@@ -30,23 +28,13 @@ class ToggleBottomPanelAction : DumbAwareAction() {
                 .mapNotNull { manager.getToolWindow(it) }
                 .filter { it.isAvailable && it.isBottomPanel() }
 
-            // ponytail: internal layout API; recheck when upgrading the IntelliJ SDK.
-            val layout = ToolWindowManagerEx.getInstanceEx(project).getLayout()
-
             val target = candidates.firstOrNull { it.id == state.lastId }
                 ?: candidates.firstOrNull { it.id == "Terminal" }
                 ?: candidates
                     .filter {
                         it.isShowStripeButton && manager.isStripeButtonShow(it)
                     }
-                    .minWithOrNull(
-                        compareBy<ToolWindow> { it.isSplitMode }
-                            .thenBy {
-                                layout.getInfo(it.id)?.order
-                                    ?.takeIf { order -> order >= 0 }
-                                    ?: Int.MAX_VALUE
-                            }
-                    )
+                    .minByOrNull { it.stripeTitle.lowercase() }
 
             target?.activate(null)
             return

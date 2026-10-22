@@ -34,7 +34,7 @@ Bottom Panel Toggle adds that command using the IntelliJ Platform APIs.
 | Project is open on the left | Toggle the bottom panel and keep Project open. |
 | A tool window has been moved to a side | Leave it there; it no longer counts as a bottom panel. |
 | A tool window is floating or in a separate window | Leave it alone. |
-| No previous bottom tool window can be restored | Open Terminal, otherwise the first available button on the bottom tool window bar. |
+| No previous bottom tool window can be restored | Open Terminal if available at the bottom; otherwise open the bottom tool window whose visible button label comes first alphabetically. |
 
 Hiding a tool window does not close its tabs or stop running processes.
 The last used bottom tool window is remembered separately for each open project
@@ -65,9 +65,32 @@ The command is also available from **Tools → Toggle Bottom Panel** and
 
 ### Terminal key handling
 
-If the shortcut works in the editor but is handled by the shell when Terminal
-has focus, check **Settings → Tools → Terminal → Override IDE shortcuts**.
-That option can give shell shortcuts priority over IDE actions.
+Since version 1.0.1, the Reworked Terminal explicitly allows **Toggle Bottom Panel**
+even when **Settings → Tools → Terminal → Override IDE shortcuts** is enabled.
+The shortcut must still be assigned to the action in your active keymap.
+
+This integration applies to the Reworked Terminal. In the Classic Terminal,
+if the shell receives the shortcut instead of the IDE, disable
+**Settings → Tools → Terminal → Override IDE shortcuts**.
+
+## Compatibility
+
+The declared IntelliJ IDEA compatibility range is **2025.3.6.1 through 2026.2.x**
+(builds `253.33813.55` through `262.*`).
+
+Binary compatibility has been checked with Plugin Verifier against:
+
+- IntelliJ IDEA **2025.3.6.1** — build `253.33813.55`.
+- IntelliJ IDEA **2026.1.5** — build `261.27258.48`.
+- IntelliJ IDEA **2026.2.3** — build `262.10968.63`.
+
+All three checks report compatibility with two experimental API usages in the
+Reworked Terminal integration and no internal API usages. The Terminal integration
+uses an experimental JetBrains API, so compatibility must be checked before
+extending the supported IDE range.
+
+The Terminal plugin is optional. Bottom Panel Toggle can also run when Terminal
+is absent or disabled.
 
 ## Development
 
@@ -82,13 +105,13 @@ From the repository directory, with JDK 21 configured:
 
 # Build the installable ZIP in build/distributions/.
 ./gradlew buildPlugin
+
+# Check the archive structure and binary compatibility with the configured IDEs.
+./gradlew verifyPluginStructure verifyPlugin
 ```
 
 On Windows, use `gradlew.bat` instead of `./gradlew`.
 The first run downloads Gradle, the target IntelliJ distribution, and dependencies.
-
-Bottom-bar ordering relies on an internal IntelliJ layout API.
-Recheck this integration when upgrading the IntelliJ SDK.
 
 ### Manual verification
 
@@ -102,11 +125,18 @@ In the sandbox, open a project and an editor file, then check:
    and toggle. The most recently used bottom tool window should reopen.
 5. Move a tool window to a side or make it floating. The bottom-panel command
    should leave it alone.
+6. With the Reworked Terminal engine selected, enable **Override IDE shortcuts**
+   and toggle while the terminal has focus.
+7. Disable the Terminal plugin, restart the sandbox, and open a fresh project
+   with at least two available bottom-bar buttons. With no previous bottom panel,
+   the toggle should open the tool window whose button label comes first
+   alphabetically, regardless of button order on the bar.
 
-Functional verification so far has been performed on macOS in the
-IntelliJ IDEA 2025.3.6.1 sandbox. Windows/Linux shortcut bindings are included;
-native testing on those platforms and testing in other IntelliJ versions
-remain to be completed.
+Manual checks have been performed on macOS in the IntelliJ IDEA 2025.3.6.1 sandbox.
+The PowerShell toggle has also been verified on Windows with the Reworked Terminal
+and **Override IDE shortcuts** enabled.
+Linux has not yet been manually tested. Binary compatibility checks are listed
+separately above.
 
 ## Contributing
 
