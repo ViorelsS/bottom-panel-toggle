@@ -42,11 +42,11 @@ and is not persisted when the project is closed.
 
 ## Installation
 
-Build the plugin from source using the instructions below, then install the ZIP:
+Download the plugin ZIP from the [latest GitHub release](https://github.com/ViorelsS/bottom-panel-toggle/releases/latest), then install it in IntelliJ IDEA:
 
 1. Open **Settings → Plugins** in IntelliJ IDEA.
 2. Open the gear menu and select **Install Plugin from Disk…**.
-3. Select the ZIP from `build/distributions/`.
+3. Select the downloaded `bottom-panel-toggle-<version>.zip` file.
 4. Restart the IDE if prompted.
 5. Configure the shortcut as described below.
 
