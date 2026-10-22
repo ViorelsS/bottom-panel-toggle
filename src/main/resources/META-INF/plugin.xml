@@ -1,0 +1,59 @@
+
+<idea-plugin>
+    <id>it.toys.bottom-panel-toggle</id>
+
+    <name>Bottom Panel Toggle</name>
+
+    <vendor>viorelss</vendor>
+
+    <description><![CDATA[
+        <p>One shortcut to hide and restore the bottom panel in IntelliJ IDEA.</p>
+
+        <p>Press Cmd+J on macOS or Ctrl+J on Windows/Linux to hide visible
+        bottom tool windows and return to the editor. Press it again to restore
+        and focus the last used bottom tool window. Side tool windows remain open.</p>
+
+        <p>The last used bottom tool window is remembered separately for each
+        open project during the current session.</p>
+
+        <p>The standard keymaps also assign these shortcuts to Insert Live Template.
+        Resolve any conflicts in Settings | Keymap.</p>
+
+        <p>If no previous bottom tool window is available, the command opens
+        Terminal or the first available button on the bottom tool window bar.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <action
+                id="it.toys.bottompanel.ToggleBottomPanelAction"
+                class="it.toys.bottompanel.ToggleBottomPanelAction"
+                text="Toggle Bottom Panel"
+                description="Hide bottom tool windows or restore the last used one">
+
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control J"/>
+
+            <keyboard-shortcut
+                    keymap="Mac OS X"
+                    first-keystroke="meta J"
+                    replace-all="true"/>
+
+            <keyboard-shortcut
+                    keymap="Mac OS X 10.5+"
+                    first-keystroke="meta J"
+                    replace-all="true"/>
+
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+
+    <projectListeners>
+        <listener
+                class="it.toys.bottompanel.BottomPanelListener"
+                topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+    </projectListeners>
+
+</idea-plugin>
