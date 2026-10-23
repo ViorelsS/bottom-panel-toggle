@@ -1,0 +1,4 @@
+<idea-plugin>
+    <depends optional="true"
+             config-file="it.toys.bottom-panel-toggle-terminal.xml">org.jetbrains.plugins.terminal</depends>
+</idea-plugin>

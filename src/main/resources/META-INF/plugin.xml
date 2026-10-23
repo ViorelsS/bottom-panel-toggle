@@ -1,5 +1,4 @@
-
-<idea-plugin url="https://github.com/ViorelsS/bottom-panel-toggle">
+<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude" url="https://github.com/ViorelsS/bottom-panel-toggle">
     <id>it.toys.bottom-panel-toggle</id>
 
     <name>Bottom Panel Toggle</name>
@@ -23,23 +22,27 @@
         <p>If no previous bottom tool window is available, the command opens
         Terminal if it is available at the bottom. Otherwise, it opens the bottom
         tool window whose visible button label comes first alphabetically.</p>
+
+        <p>Builds for newer IDEs include an integration that allows the shortcut
+        in the Reworked Terminal when Override IDE shortcuts is enabled.
+        With other builds or terminal engines, disable Override IDE shortcuts
+        in Settings | Tools | Terminal if the terminal captures the shortcut.
+        The Terminal plugin is not required.</p>
     ]]></description>
 
     <change-notes><![CDATA[
         <ul>
-            <li>Allow the toggle shortcut in the Reworked Terminal
-            when Override IDE shortcuts is enabled.</li>
-            <li>Use alphabetical ordering for the fallback bottom tool window
-            when neither the previous panel nor Terminal is available.</li>
-            <li>Remove internal layout API usage.</li>
+            <li>Build compatibility packages for older and newer IntelliJ IDEA
+            versions from the same shared toggle implementation.</li>
+            <li>Keep the Reworked Terminal shortcut integration in builds
+            for supported newer IDEs.</li>
         </ul>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
-    <depends optional="true"
-             config-file="it.toys.bottom-panel-toggle-terminal.xml">
-        org.jetbrains.plugins.terminal
-    </depends>
+    <xi:include href="/META-INF/bottom-panel-toggle-modern.xml">
+        <xi:fallback/>
+    </xi:include>
 
     <actions>
         <action
