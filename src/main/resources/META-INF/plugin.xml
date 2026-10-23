@@ -23,11 +23,11 @@
         Terminal if it is available at the bottom. Otherwise, it opens the bottom
         tool window whose visible button label comes first alphabetically.</p>
 
-        <p>Builds for newer IDEs include an integration that allows the shortcut
-        in the Reworked Terminal when Override IDE shortcuts is enabled.
-        With other builds or terminal engines, disable Override IDE shortcuts
-        in Settings | Tools | Terminal if the terminal captures the shortcut.
-        The Terminal plugin is not required.</p>
+        <p>Modern builds allow the shortcut in the Reworked Terminal when
+        Override IDE shortcuts is enabled. With legacy builds, use the Classic
+        terminal engine. In Classic Terminal, disable Override IDE shortcuts
+        in Settings | Tools | Terminal. Apply the changes and open a new terminal
+        tab after changing the engine. The Terminal plugin is optional.</p>
     ]]></description>
 
     <change-notes><![CDATA[
