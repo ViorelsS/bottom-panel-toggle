@@ -16,8 +16,9 @@
         <p>The last used bottom tool window is remembered separately for each
         open project during the current session.</p>
 
-        <p>The standard keymaps also assign these shortcuts to Insert Live Template.
-        Resolve any conflicts in Settings | Keymap.</p>
+        <p>The toggle takes priority over other IDE actions assigned to the same
+        shortcut, including inside editor text fields such as Agent Sessions.
+        Assign separate shortcuts in Settings | Keymap if needed.</p>
 
         <p>If no previous bottom tool window is available, the command opens
         Terminal if it is available at the bottom. Otherwise, it opens the bottom
@@ -32,10 +33,8 @@
 
     <change-notes><![CDATA[
         <ul>
-            <li>Build compatibility packages for older and newer IntelliJ IDEA
-            versions from the same shared toggle implementation.</li>
-            <li>Keep the Reworked Terminal shortcut integration in builds
-            for supported newer IDEs.</li>
+            <li>Extend the modern package compatibility to IntelliJ IDEA 2026.3 (263.*).</li>
+            <li>Keep the toggle shortcut working after focus returns to the Agent Sessions text input.</li>
         </ul>
     ]]></change-notes>
 

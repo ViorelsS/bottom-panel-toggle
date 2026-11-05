@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.4] - 2026-11-05
+
+### Fixed
+
+- Prioritize the toggle over competing editor actions so its shortcut keeps working after focus returns to the Agent Sessions text input.
+
+### Changed
+
+- Extend the modern package compatibility to IntelliJ IDEA 2026.3 (`263.*`).
+- Add IntelliJ IDEA 2026.3 to the Plugin Verifier targets.
+- Verify binary compatibility against IntelliJ IDEA 2025.3.6.1, 2026.1.5, 2026.2.3, and 2026.3 (build `263.7307.200`). All four reports are Compatible with the same two experimental Terminal API usage findings.
+- Pass user-confirmed manual smoke tests on macOS with IntelliJ IDEA 2026.3: hide and restore Terminal and Problems with Cmd+J, verify editor and Terminal focus, keep Project visible, and use the Reworked Terminal with Override IDE shortcuts enabled.
+- Pass the user-confirmed Agent Sessions regression check: repeatedly open and close Terminal with Cmd+J after focus returns to the central text input.
+
 ## [1.0.3] - 2026-10-23
 
 ### Changed

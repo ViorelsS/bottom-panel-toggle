@@ -33,7 +33,7 @@ The first run downloads Gradle, the required IDE distributions, and dependencies
 | Package | ZIP location | Verification reports |
 | --- | --- | --- |
 | Legacy | `build/legacy/distributions/bottom-panel-toggle-1.0.2.zip` | `build/legacy/reports/pluginVerifier/` |
-| Modern | `build/modern/distributions/bottom-panel-toggle-1.0.3.zip` | `build/modern/reports/pluginVerifier/` |
+| Modern | `build/modern/distributions/bottom-panel-toggle-1.0.4.zip` | `build/modern/reports/pluginVerifier/` |
 
 The packages use separate build directories and sandbox directories under
 `.intellijPlatform/sandbox/legacy/` and `.intellijPlatform/sandbox/modern/`.
@@ -77,13 +77,21 @@ Then check:
    with at least two available bottom-bar buttons. With no previous bottom panel,
    the toggle should open the tool window whose button label comes first
    alphabetically, regardless of button order on the bar.
+8. On IntelliJ IDEA 2026.3, focus the text input in the central Agent Sessions tab.
+   Press Cmd+J on macOS or Ctrl+J on Windows/Linux at least four times. Terminal
+   should open and close repeatedly, including after focus returns to the input.
+   Project should remain visible.
+
+The toggle action implements the public `ActionPromoter` API. IntelliJ invokes
+it when the action is a candidate for the pressed shortcut, so the toggle takes
+priority over competing editor actions without changing the user's keymap.
 
 ## Compatibility and verification
 
 | Package | Minimum IDE build | Maximum IDE build | Compilation target |
 | --- | --- | --- | --- |
 | Legacy 1.0.2 | `241.14494.240` | `253.*` | Java 17 |
-| Modern 1.0.3 | `253.33813.55` | `262.*` | Java 21 |
+| Modern 1.0.4 | `253.33813.55` | `263.*` | Java 21 |
 
 Plugin Verifier reported **Compatible** for every package listed below:
 
@@ -95,9 +103,10 @@ Plugin Verifier reported **Compatible** for every package listed below:
 | 2025.1.7.2 | Community | `251.29188.72` | Legacy 1.0.2 |
 | 2025.2.6.3 | Community | `252.28539.97` | Legacy 1.0.2 |
 | 2025.3 | Unified | `253.28294.334` | Legacy 1.0.2 |
-| 2025.3.6.1 | Unified | `253.33813.55` | Legacy 1.0.2 and Modern 1.0.3 |
-| 2026.1.5 | Unified | `261.27258.48` | Modern 1.0.3 |
-| 2026.2.3 | Unified | `262.10968.63` | Modern 1.0.3 |
+| 2025.3.6.1 | Unified | `253.33813.55` | Legacy 1.0.2 and Modern 1.0.4 |
+| 2026.1.5 | Unified | `261.27258.48` | Modern 1.0.4 |
+| 2026.2.3 | Unified | `262.10968.63` | Modern 1.0.4 |
+| 2026.3 | Unified | `263.7307.200` | Modern 1.0.4 |
 
 The legacy reports contain no API usage warnings. Each modern report contains
 two experimental API usage findings for `TerminalAllowedActionsProvider`,
@@ -117,6 +126,15 @@ The legacy terminal shortcut was also verified on **Windows with PowerShell** in
 hiding Terminal, returning focus to the editor, and restoring Terminal.
 The modern package has not yet been manually tested on Windows; neither package
 has been manually tested on Linux.
+On 2026-11-05, the user confirmed that manual smoke tests passed for version
+1.0.4 on **macOS** in the **IntelliJ IDEA 2026.3** sandbox, build `263.7307.200`:
+hide and restore Terminal and Problems with Cmd+J, return focus to the editor,
+restore focus to Terminal, and keep Project visible on the left. The terminal
+check also passed with the **Reworked** engine and **Override IDE shortcuts enabled**.
+The sandbox log confirmed that version 1.0.4 was loaded and contained no ERROR entries.
+After fixing shortcut priority, the user also confirmed the Agent Sessions
+regression check on the same macOS/2026.3 setup: repeated Cmd+J cycles continued
+to open and close Terminal after focus returned to the central text input.
 
 ### Legacy terminal configuration
 

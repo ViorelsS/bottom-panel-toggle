@@ -47,7 +47,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = if (isLegacy) "241.14494.240" else "253.33813.55"
-            untilBuild = if (isLegacy) "253.*" else "262.*"
+            untilBuild = if (isLegacy) "253.*" else "263.*"
         }
     }
 
@@ -64,6 +64,7 @@ intellijPlatform {
             } else {
                 create(IntelliJPlatformType.IntellijIdea, "2026.1.5")
                 create(IntelliJPlatformType.IntellijIdea, "2026.2.3")
+                create(IntelliJPlatformType.IntellijIdea, "2026.3")
             }
         }
     }

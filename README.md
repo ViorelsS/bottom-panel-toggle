@@ -28,15 +28,17 @@ to get an available compatible version, or download the ZIP for your IDE:
 | IntelliJ IDEA | Download |
 | --- | --- |
 | 2024.1–2025.3.x | [1.0.2 (legacy)](https://github.com/ViorelsS/bottom-panel-toggle/releases/download/v1.0.3/bottom-panel-toggle-1.0.2.zip) |
-| 2025.3.6.1–2026.2.x | [1.0.3 (modern)](https://github.com/ViorelsS/bottom-panel-toggle/releases/download/v1.0.3/bottom-panel-toggle-1.0.3.zip) |
+| 2025.3.6.1–2026.3.x | 1.0.4 (modern, publication pending; [build from source](docs/DEVELOPMENT.md#build-and-run)) |
 
-If both packages support your IDE, choose **1.0.3**.
+If both packages support your IDE, choose **1.0.4**.
 Install a ZIP through **Settings → Plugins → gear menu → Install Plugin from Disk…**.
 
 ## Setup
 
 - **Keymap:** in **Settings → Keymap**, search for **Toggle Bottom Panel**.
-  Assign the shortcut if needed and resolve any conflict with **Insert Live Template**.
+  Assign the shortcut if needed. The toggle takes priority over IDE actions sharing
+  its shortcut, including inside the Agent Sessions text input. Assign separate
+  shortcuts if you also need another action such as **Insert Live Template**.
 - **Legacy terminal:** in **Settings → Tools → Terminal**, select **Classic** and
   disable **Override IDE shortcuts**. Apply the changes and open a new terminal tab.
 - **Modern terminal:** the Reworked Terminal integration allows the shortcut with

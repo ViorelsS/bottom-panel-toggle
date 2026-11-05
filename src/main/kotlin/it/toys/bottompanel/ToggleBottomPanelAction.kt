@@ -1,12 +1,19 @@
 package it.toys.bottompanel
 
 import com.intellij.openapi.actionSystem.ActionUpdateThread
+import com.intellij.openapi.actionSystem.ActionPromoter
+import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.openapi.components.service
 
-class ToggleBottomPanelAction : DumbAwareAction() {
+class ToggleBottomPanelAction : DumbAwareAction(), ActionPromoter {
+
+    // Editor text fields can register local actions for the same shortcut.
+    override fun promote(actions: List<AnAction>, context: DataContext): List<AnAction> =
+        listOf(this)
 
     override fun getActionUpdateThread() = ActionUpdateThread.BGT
 
