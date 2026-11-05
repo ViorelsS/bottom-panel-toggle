@@ -28,7 +28,7 @@ to get an available compatible version, or download the ZIP for your IDE:
 | IntelliJ IDEA | Download |
 | --- | --- |
 | 2024.1–2025.3.x | [1.0.2 (legacy)](https://github.com/ViorelsS/bottom-panel-toggle/releases/download/v1.0.3/bottom-panel-toggle-1.0.2.zip) |
-| 2025.3.6.1–2026.3.x | 1.0.4 (modern, publication pending; [build from source](docs/DEVELOPMENT.md#build-and-run)) |
+| 2025.3.6.1–2026.3.x | [1.0.4 (modern)](https://github.com/ViorelsS/bottom-panel-toggle/releases/download/v1.0.4/bottom-panel-toggle-1.0.4.zip) |
 
 If both packages support your IDE, choose **1.0.4**.
 Install a ZIP through **Settings → Plugins → gear menu → Install Plugin from Disk…**.
